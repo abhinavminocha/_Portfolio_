@@ -1,0 +1,113 @@
+@media  screen and (max-width:750px){
+
+    .navbar{
+        visibility: hidden;
+        width:0%;
+    }
+    .ham-menu{
+        position:absolute;
+        top:25px;
+        right:10%;
+        width:38px; 
+        height:40px;
+        cursor:pointer;
+        transition:all 0.5s ease;
+
+       
+    }
+    .ham{
+        position: relative;
+        display:inline-block;
+        width:38px;
+        height:3px;
+        background-color:white;
+        transition: all 0.5s ease;
+        z-index:20;
+
+        &.open{
+            background:transparent;
+            transform:rotate(720deg);
+        }
+    }
+    .ham::after{
+        content:'';
+        position:absolute;
+        width:38px;
+        height:3px;
+        background:white;
+        top:11px;
+        right:0%;
+    }
+    .ham::before{
+        content:'';
+        position:absolute;
+        width:38px;
+        height:3px;
+        background:white;
+        top:-11px;
+        right:0%;
+    }
+    .ham.open::after{
+        transform: rotate(-45deg) translate(7px , -9px);
+    }
+    .ham.open::before{
+        transform: rotate(45deg) translate(7px , 9px);
+    }
+
+    .navbar {
+        position: fixed;
+        width: 100vw;
+        visibility: hidden;
+        opacity: 0.97;
+        top: 0;
+        left: 0;
+        transition: all 1.5s cubic-bezier(0.84, 0.22, 0.32, 0.58);
+        z-index: 10;
+
+        &.open {
+            visibility: visible;
+
+        }
+
+        .navmenu {
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            transform: translateY(-100vh);
+            transition: all 0.7s cubic-bezier(0.68, 0.19, 0.46, 0.77);
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+            display: flex;
+
+            .nav-item {
+                transform: translateX(110vw);
+                transition: all 0.8s linear;
+
+                a {
+                    font-size: 24px;
+                }
+
+                &.open {
+                    transform: translateX(0);
+                }
+            }
+
+            &.open {
+                transform: translateY(0);
+            }
+
+            li {
+                margin-top: 50px;
+            }
+        }
+    }
+
+    @for $i from 1 through 5 {
+        .navmenu .nav-item:nth-child(#{$i}) {
+            transition-delay: ($i * 0.2s) + 0.15s;
+        }
+    }
+    
+    
+}
